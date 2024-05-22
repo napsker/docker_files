@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  grafana:
+    image: grafana/grafana-enterprise:9.3.2
+    container_name: grafana
+    volumes:
+      - ${LOCAL_PATH}/docker/data/grafana/config:/etc/grafana
+      - ${LOCAL_PATH}/docker/data/grafana/data:/var/lib/grafana  
+    ports:
+      - 3030:3000
+    user: '104'
+    restart: always
+

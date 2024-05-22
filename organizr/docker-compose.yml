@@ -1,0 +1,18 @@
+version: "2.1"
+services:
+  organizr:
+    image: organizr/organizr:linux-amd64
+    container_name: organizr
+    environment:
+      #      - fpm="false"
+      #- branch="v2-master"
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+      - AUTO_UPDATE=true #optional
+      #optional - RUN_OPTS=<run options here> 
+    volumes:
+      - ${LOCAL_PATH}/docker/data/organizr:/config
+    ports:
+      - 9055:80
+    restart: unless-stopped

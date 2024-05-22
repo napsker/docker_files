@@ -1,0 +1,37 @@
+version: '2'
+
+volumes:
+  nextcloud:
+  db_next:
+
+services:
+  db_next:
+    image: mariadb:10.8.2-rc-focal
+    container_name: nextcloud-db
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - ${LOCAL_PATH}/docker/data/nextcloud/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${NEXTCLOUD_DB_PASSWORD}
+      - MYSQL_DATABASE=${NEXTCLOUD_DB_NAME}
+      - MYSQL_USER=${NEXTCLOUD_DB_USER}
+
+  app:
+    image: nextcloud:25.0-apache
+    container_name: nextcloud-app
+    restart: always
+    ports:
+      - "8800:80"
+      - "8443:443"
+    links:
+      - db_next
+    volumes:
+      - ${LOCAL_PATH}/docker/data/nextcloud/app:/var/www/html
+      - ${LOCAL_PATH}/datos/cloud:/var/datos
+    environment:
+      - MYSQL_PASSWORD=${NEXTCLOUD_DB_PASSWORD}
+      - MYSQL_DATABASE=${NEXTCLOUD_DB_NAME}
+      - MYSQL_USER=${NEXTCLOUD_DB_USER}
+      - MYSQL_HOST=db_next

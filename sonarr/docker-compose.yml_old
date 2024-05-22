@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:develop-version-4.0.0.342
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=${TZ}
+    volumes:
+      - ${LOCAL_PATH}/docker/data/sonarr:/config
+      - ${LOCAL_PATH}/plex/media/series:/tv 
+      - ${LOCAL_PATH}/datos/downloads:/downloads
+    ports:
+      - 8900:8989
+    restart: unless-stopped

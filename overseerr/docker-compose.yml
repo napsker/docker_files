@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  overseerr:
+    image: sctx/overseerr:1.32.5
+    container_name: overseerr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=${TZ}
+      - PORT=5055 #optional
+    ports:
+      - 5085:5055
+    volumes:
+      - ${LOCAL_PATH}/docker/data/overseerr/config:/app/config
+    restart: unless-stopped

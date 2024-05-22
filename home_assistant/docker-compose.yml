@@ -1,0 +1,16 @@
+version: '3'
+services:
+  homeassistant:
+    container_name: home_assistant
+    image: "ghcr.io/home-assistant/home-assistant:2023.4.2"
+    volumes:
+      - ${LOCAL_PATH}/docker/data/home_assistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=${TZ}
+    restart: unless-stopped
+    privileged: true
+      #network_mode: host
+    ports:
+      - 8188:8123
+

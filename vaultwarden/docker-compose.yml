@@ -1,0 +1,27 @@
+version: "3"
+services:
+  vaultwarden:
+    image: vaultwarden/server:1.27.0-alpine
+    container_name: vaultwarden
+    environment:
+      TZ: ${TZ}
+      WEBSOCKET_ENABLED: "true"  # Enable WebSocket notifications.
+      DOMAIN: "https://vaultwarden.aroxcloud.com"
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_FROM: "<vaultwarden@aroxcloud.com>"
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_SECURITY: ${SMTP_SECURITY}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+        #SIGNUPS_ALLOWED: "false"
+      INVITATIONS_ALLOWED: "false"
+      LOG_FILE: "/data/vaultwarden.log"
+      LOG_LEVEL: "warn"
+      EXTENDED_LOGGING: "true"
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+    volumes:
+      - ${LOCAL_PATH}/docker/data/vaultwarden:/data/
+    ports:
+      - 8690:80
+    restart: unless-stopped
+

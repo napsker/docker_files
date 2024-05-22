@@ -1,0 +1,18 @@
+version: "3.6"
+services:
+  piHole_exporter:
+    image: ekofr/pihole-exporter:v0.3.0
+    container_name: piHole_exporter
+    ports:
+      - 9622:9617
+    environment:
+      PIHOLE_HOSTNAME: 192.168.170.200
+      PIHOLE_PROTOCOL: http
+      PIHOLE_PORT: 8080
+      PIHOLE_API_TOKEN: 4fdf82e4ce2bd133650b02945889304692e354e9cd3abfde295b529851334690
+      TZ: ${TZ}
+      INTERVAL: 30s
+      TIMEOUT: 30s
+      PORT: 9617
+    restart: always
+

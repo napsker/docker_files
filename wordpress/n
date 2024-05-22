@@ -1,0 +1,4 @@
+# Nmap 7.70 scan initiated Sun Apr  3 16:21:40 2022 as: nmap -mn localhost
+Host: 127.0.0.1 (localhost)	Status: Up
+Host: 127.0.0.1 (localhost)	Ports: 22/open/tcp//ssh///, 53/open/tcp//domain///, 80/open/tcp//http///, 81/open/tcp//hosts2-ns///, 111/open/tcp//rpcbind///, 443/open/tcp//https///, 3005/open/tcp//deslogin///, 8000/open/tcp//http-alt///, 8080/open/tcp//http-proxy///	Ignored State: closed (991)
+# Nmap done at Sun Apr  3 16:21:42 2022 -- 1 IP address (1 host up) scanned in 1.74 seconds

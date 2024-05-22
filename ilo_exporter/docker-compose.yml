@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  hpilo:
+    restart: unless-stopped
+    image: idnt/hpilo-exporter:v0.3.9
+    ports:
+      - 9496:9416
+    container_name: ilo_exporter
+    command:
+      - '--port=9416'
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == 192.168.150.50
+

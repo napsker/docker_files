@@ -1,0 +1,12 @@
+version: '3'
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:0.11.5
+    restart: unless-stopped
+    volumes:
+      - ${LOCAL_PATH}/docker/data/homarr/configs:/app/data/configs
+      - ${LOCAL_PATH}/docker/data/homarr/icons:/app/public/icons
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - '7595:7575'

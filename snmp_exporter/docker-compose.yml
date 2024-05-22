@@ -1,0 +1,11 @@
+version: "3"
+services:
+
+    snmp:
+        image: "prom/snmp-exporter:v0.21.0"
+        container_name: snmp_exporter
+        restart: "always"
+        ports:
+          - 9106:9116
+        volumes:
+          - ${LOCAL_PATH}/docker/data/snmp_exporter/snmp.yml:/etc/snmp_exporter/snmp.yml

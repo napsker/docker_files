@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  prometheus:
+    image: prom/prometheus:v2.41.0
+    container_name: prometheus
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${LOCAL_PATH}/docker/data/prometheus:/etc/prometheus
+      - ${LOCAL_PATH}/docker/data/prometheus/data:/prometheus
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    - --web.config.file=/etc/prometheus/web.yml
+    ports:
+      - 9009:9090
+    restart: unless-stopped

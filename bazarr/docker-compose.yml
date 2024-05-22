@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:v1.2.3-ls202
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=${TZ}
+    volumes:
+      - ${LOCAL_PATH}/docker/data/bazarr:/config
+      - ${LOCAL_PATH}/plex/media/peliculas:/movies
+      - ${LOCAL_PATH}/plex/media/series:/tv
+    ports:
+      - 6766:6767
+    restart: unless-stopped

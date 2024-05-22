@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:2.9.16'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ${LOCAL_PATH}/data/proxy-manager/data:/data
+      - ${LOCAL_PATH}/data/proxy-manager/letsencrypt:/etc/letsencrypt

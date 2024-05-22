@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  heimdall:
+    image: linuxserver/heimdall:amd64-version-v2.5.5
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    volumes:
+      - ${LOCAL_PATH}/docker/data/heimdall/config:/config
+    ports:
+      - 8088:80
+      - 4438:443
+    restart: unless-stopped

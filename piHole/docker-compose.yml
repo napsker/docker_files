@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:2023.02.2
+    ports:
+      - "553:53/tcp"
+      - "553:53/udp"
+      - "8080:80/tcp"
+    environment:
+      TZ: '${TZ}'
+      WEBPASSWORD: ${WEBPASSWORD}
+    volumes:
+      - '${LOCAL_PATH}/docker/data/piHole/etc-pihole:/etc/pihole:z'
+      - '${LOCAL_PATH}/docker/data/piHole/etc-dnsmasq.d:/etc/dnsmasq.d:z'
+    restart: unless-stopped

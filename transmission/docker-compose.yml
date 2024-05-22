@@ -1,0 +1,24 @@
+version: "2.1"
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:version-3.00-r8
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=${TZ}
+      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+      - USER=${TX_USER}
+      - PASS=${TX_PASS}
+      #optional - WHITELIST=iplist 
+      #optional - PEERPORT=peerport 
+      #optional - HOST_WHITELIST=dnsname list 
+    volumes:
+      - ${LOCAL_PATH}/docker/data/transmission/data:/config
+      - ${LOCAL_PATH}/datos/downloads:/downloads
+      - ${LOCAL_PATH}/docker/data/transmission/watch:/watch
+    ports:
+      - 9091:9091
+      - 51456:51456
+      - 51456:51456/udp
+    restart: unless-stopped

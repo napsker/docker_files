@@ -1,0 +1,16 @@
+version: '3'
+services:
+  tautulli:
+    image: tautulli/tautulli:v2.12.5
+    container_name: tautulli
+    restart: unless-stopped
+    volumes:
+      - ${LOCAL_PATH}/docker/data/tautulli:/config
+      - ${PLEX_LOGS}:/usr/local/etc
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    ports:
+      - 8151:8181
+
